@@ -79,7 +79,7 @@ function Questions() {
                     onClick={(e, i) => {
                       setAnss([...anss, e.target.value]);
 
-                      setCount(count + 1);
+                      // setCount(count + 1);
                     }}
                   >
                     {answers}
