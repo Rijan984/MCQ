@@ -6,18 +6,19 @@ function Finished({ correctAns }) {
   const [score, setScore] = useState(0);
   const corr = questions.map(({ corrAns }) => corrAns);
 
-  console.log(corr);
-  console.log(correctAns);
+  //   console.log(corr);
+  //   console.log(correctAns);
   let exactAns = corr.filter((correctAnsss) =>
     correctAns.includes(correctAnsss)
   );
-  console.log(exactAns);
+  //   console.log(exactAns);
 
   let perc = (exactAns.length / corr.length) * 100;
   useEffect(() => {
     if (JSON.stringify(corr) === JSON.stringify(correctAns)) {
       setScore(perc + "%");
-    } else console.log(exactAns);
+    }
+    // else console.log(exactAns);
   }, [correctAns, perc, corr, exactAns]);
 
   return (

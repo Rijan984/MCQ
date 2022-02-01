@@ -22,14 +22,14 @@ function Questions() {
   const nextQues = (e) => {
     e.preventDefault();
     setCount(count + 1);
-    console.log();
+    // console.log();
     setDisabled(false);
     // console.log(count);
     if (count >= questions.length - 2) {
       setNxtFin(true);
       // setNextDisabled(true);
     }
-    console.log(anss);
+    // console.log(anss);
   };
 
   const prevQues = (e) => {
@@ -47,14 +47,14 @@ function Questions() {
   };
   const corr = questions.map(({ corrAns }) => corrAns);
   const corrAnss = () => {
-    console.log(anss);
-    console.log("ss");
-    console.log("ssss", corr[0]);
+    // console.log(anss);
+    // console.log("ss");
+    // console.log("ssss", corr[0]);
     if (corr === anss) {
       return console.log("correct");
     }
   };
-  console.log();
+  // console.log();
 
   return (
     <section className="main">
@@ -143,7 +143,7 @@ function Questions() {
         </div>
       )}
       {check && <Finished correctAns={anss} />}
-      {console.log(result)}
+      {/* {console.log(result)} */}
     </section>
   );
 }
