@@ -12,13 +12,33 @@ function Questions() {
   const [nxtFin, setNxtFin] = useState(false);
   const radiosWrapper = useRef();
   const [result, setResult] = useState("");
+  const [time, setTime] = useState("60 sec");
+  const [min, setMin] = useState(1);
+
   useEffect(() => {
-    const findCheckedInput =
-      radiosWrapper.current.querySelector("input:checked");
-    if (findCheckedInput) {
-      findCheckedInput.checked = false;
+    function Timerss() {
+      let timer = 60;
+      const timerInterval = setInterval(() => {
+        timer = timer - 1;
+        // const min = timer / 60;
+        if (timer <= 0) {
+          timer = 60;
+          setMin(min - 1);
+        }
+        setTime(`${timer} sec`);
+        if (min === 0) {
+          clearInterval(timerInterval);
+          console.log("hey");
+        }
+      }, 1000);
     }
-  }, []);
+    Timerss();
+
+    if (min === 0) {
+      setCheck(true);
+    }
+  }, [min]);
+
   const nextQues = (e) => {
     e.preventDefault();
     setCount(count + 1);
@@ -58,11 +78,16 @@ function Questions() {
 
   return (
     <section className="main">
+      <p></p>
+
+      {/* <Timer countdownTimestampMs={1643673600000} /> */}
       {check || (
         <div className="main-ques">
+          <p>{`${min} min ${time}`}</p>
           <h1>
             <u>MCQ Online Examination</u>
           </h1>
+          <h5>{`Questions ${count + 1} of ${questions.length}`}</h5>
           <div className="questions">
             <h4>{questions[count].id}.</h4>
             <h4>{questions[count].ques}</h4>
@@ -143,6 +168,7 @@ function Questions() {
         </div>
       )}
       {check && <Finished correctAns={anss} />}
+
       {/* {console.log(result)} */}
     </section>
   );
