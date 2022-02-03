@@ -27,7 +27,11 @@ function Finished({ correctAns, btnResult }) {
     <div className="result">
       <h2>MCQ Exam Completed!!</h2>
       <h3>{Math.round(perc) + "%"}</h3>
-      <h3>{perc >= 50 ? "Pass" : "Fail"}</h3>
+      <h3>
+        {perc >= 50
+          ? "Congratulation!! You Pass The Exam"
+          : "Better Luck Next Time!! Fail"}
+      </h3>
 
       <button className="btn btn-success" onClick={() => navigate("/")}>
         Exit

@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { ans, selectUser } from "../../features/userSlice";
+import { ans, selectTime, selectUser, timers } from "../../features/userSlice";
 import Finished from "./Finished";
 import { questions } from "./question";
 import "./questions.css";
@@ -13,18 +13,18 @@ function Questions() {
   const [anss, setAnss] = useState([]);
   const [check, setCheck] = useState(false);
   const [nxtFin, setNxtFin] = useState(false);
-  const radiosWrapper = useRef();
-  const [result, setResult] = useState("");
+  // const radiosWrapper = useRef();
+  // const [result, setResult] = useState("");
   const [time, setTime] = useState("60 sec");
-  const [min, setMin] = useState(1);
+  const [min, setMin] = useState(2);
   const [warn, setWarn] = useState(false);
-
-  const userRedux = useSelector(selectUser);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   useEffect(() => {
     function Timerss() {
       let timer = 60;
+
       const timerInterval = setInterval(() => {
         timer = timer - 1;
         // const min = timer / 60;
@@ -33,6 +33,7 @@ function Questions() {
           setMin(min - 1);
         }
         setTime(`${timer} sec`);
+
         if (min === 0) {
           clearInterval(timerInterval);
           console.log("hey");
@@ -105,7 +106,7 @@ function Questions() {
       {/* <Timer countdownTimestampMs={1643673600000} /> */}
       {check || (
         <div className="main-ques">
-          {warn && <p className="alert alert-danger">Only one min remain</p>}
+          {warn && <p className="alert alert-danger">Only 1 minute remain</p>}
           <p>{`${min} min ${time}`}</p>
           <h1>
             <u>MCQ Online Examination</u>
@@ -115,7 +116,7 @@ function Questions() {
             <h4>{questions[count].id}.</h4>
             <h4>{questions[count].ques}</h4>
           </div>
-          <div className="answers" ref={radiosWrapper}>
+          <div className="answers">
             {questions[count].ans.map((answers, i) => {
               return (
                 <div className="ans" key={i}>
