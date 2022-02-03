@@ -19,7 +19,7 @@ function App() {
           {!corrAns && <Route exact path="/" element={<Start />} />}
           {corrAns && <Route exact path="/" element={<AlreadyGiven />} />}
 
-          <Route exact path="/mcq-exam" element={<Questions />} />
+          {/* <Route exact path="/mcq-exam" element={<Questions />} /> */}
           {corrAns && (
             <Route
               exact
