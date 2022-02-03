@@ -1,4 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { ans, selectUser } from "../../features/userSlice";
 import Finished from "./Finished";
 import { questions } from "./question";
 import "./questions.css";
@@ -14,7 +17,11 @@ function Questions() {
   const [result, setResult] = useState("");
   const [time, setTime] = useState("60 sec");
   const [min, setMin] = useState(1);
+  const [warn, setWarn] = useState(false);
 
+  const userRedux = useSelector(selectUser);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   useEffect(() => {
     function Timerss() {
       let timer = 60;
@@ -36,8 +43,17 @@ function Questions() {
 
     if (min === 0) {
       setCheck(true);
+      dispatch(
+        ans({
+          answer: anss,
+        })
+      );
+      navigate("/result");
     }
-  }, [min]);
+    if (min === 1) {
+      setWarn(true);
+    }
+  }, [min, navigate, dispatch, anss]);
 
   const nextQues = (e) => {
     e.preventDefault();
@@ -73,6 +89,12 @@ function Questions() {
     if (corr === anss) {
       return console.log("correct");
     }
+    dispatch(
+      ans({
+        answer: anss,
+      })
+    );
+    navigate("/result");
   };
   // console.log();
 
@@ -83,6 +105,7 @@ function Questions() {
       {/* <Timer countdownTimestampMs={1643673600000} /> */}
       {check || (
         <div className="main-ques">
+          {warn && <p className="alert alert-danger">Only one min remain</p>}
           <p>{`${min} min ${time}`}</p>
           <h1>
             <u>MCQ Online Examination</u>
