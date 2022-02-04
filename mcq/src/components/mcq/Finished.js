@@ -4,7 +4,7 @@ import { useState } from "react/cjs/react.development";
 import { questions } from "./question";
 import "./questions.css";
 function Finished({ correctAns, btnResult }) {
-  const [score, setScore] = useState(0);
+  // const [score, setScore] = useState(0);
   const corr = questions.map(({ corrAns }) => corrAns);
   const navigate = useNavigate();
 
@@ -16,12 +16,12 @@ function Finished({ correctAns, btnResult }) {
   //   console.log(exactAns);
 
   let perc = (exactAns.length / corr.length) * 100;
-  useEffect(() => {
-    if (JSON.stringify(corr) === JSON.stringify(correctAns)) {
-      setScore(perc + "%");
-    }
-    // else console.log(exactAns);
-  }, [correctAns, perc, corr, exactAns]);
+  // useEffect(() => {
+  //   if (JSON.stringify(corr) === JSON.stringify(correctAns)) {
+  //     setScore(perc + "%");
+  //   }
+  //   // else console.log(exactAns);
+  // }, [correctAns, perc, corr, exactAns]);
 
   return (
     <div className="result">

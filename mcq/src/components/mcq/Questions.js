@@ -33,7 +33,7 @@ function Questions() {
           setMin(min - 1);
         }
         setTime(`${timer} sec`);
-
+        // console.log(timer);
         if (min === 0) {
           clearInterval(timerInterval);
           console.log("hey");
@@ -67,6 +67,11 @@ function Questions() {
       // setNextDisabled(true);
     }
     // console.log(anss);
+  };
+  const ansSet = (e) => {
+    // e.preventDefault();
+    setAnss([...anss, e.target.value]);
+    // console.log(answers);
   };
 
   const prevQues = (e) => {
@@ -125,10 +130,9 @@ function Questions() {
                     value={answers}
                     name="answers"
                     className=" btn btn-outline-success"
-                    onClick={(e, i) => {
+                    onClick={(e) => {
+                      // e.preventDefault();
                       setAnss([...anss, e.target.value]);
-
-                      // setCount(count + 1);
                     }}
                   >
                     {answers}
