@@ -70,6 +70,7 @@ function Questions() {
   };
   const ansSet = (e) => {
     e.preventDefault();
+    // setAnss[count]("");
     setAnss([...anss, e.target.value]);
     // setCount(count + 1);
     // console.log(answers);
@@ -112,7 +113,9 @@ function Questions() {
       {/* <Timer countdownTimestampMs={1643673600000} /> */}
       {check || (
         <div className="main-ques">
-          {warn && <p className="alert alert-danger">Only 1 minute remain</p>}
+          {warn && (
+            <p className="alert alert-danger">Only 1 minute remaining</p>
+          )}
           <p>{`${min} min ${time}`}</p>
           <h1>
             <u>MCQ Online Examination</u>
@@ -131,7 +134,10 @@ function Questions() {
                     value={answers}
                     name="answers"
                     className=" btn btn-outline-success"
-                    onClick={ansSet}
+                    onClick={
+                      ansSet
+                      // console.log(anss);
+                    }
                   >
                     {answers}
                   </button>
