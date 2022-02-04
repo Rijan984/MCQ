@@ -54,7 +54,7 @@ function Questions() {
     if (min === 1) {
       setWarn(true);
     }
-  }, [min, navigate, dispatch, anss]);
+  }, [min, navigate, dispatch]);
 
   const nextQues = (e) => {
     e.preventDefault();
@@ -69,8 +69,9 @@ function Questions() {
     // console.log(anss);
   };
   const ansSet = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     setAnss([...anss, e.target.value]);
+    // setCount(count + 1);
     // console.log(answers);
   };
 
@@ -130,10 +131,7 @@ function Questions() {
                     value={answers}
                     name="answers"
                     className=" btn btn-outline-success"
-                    onClick={(e) => {
-                      // e.preventDefault();
-                      setAnss([...anss, e.target.value]);
-                    }}
+                    onClick={ansSet}
                   >
                     {answers}
                   </button>
