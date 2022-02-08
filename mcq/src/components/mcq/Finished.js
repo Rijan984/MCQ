@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react/cjs/react.development";
 import { questions } from "./question";
 import "./questions.css";
-function Finished({ correctAns, btnResult }) {
+function Finished({ correctAns }) {
   // const [score, setScore] = useState(0);
   const corr = questions.map(({ corrAns }) => corrAns);
   const navigate = useNavigate();

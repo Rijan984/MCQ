@@ -20,6 +20,8 @@ function Questions() {
   const [warn, setWarn] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [indexVal, setindexVal] = useState();
+  const [checks, setChecks] = useState(false);
 
   useEffect(() => {
     function Timerss() {
@@ -57,23 +59,27 @@ function Questions() {
   }, [min, navigate, dispatch]);
 
   const nextQues = (e) => {
+    let unCheck = document.querySelectorAll("input")[indexVal];
+    unCheck.checked = false;
+    e.target.checked = false;
+    console.log(unCheck);
     e.preventDefault();
     setCount(count + 1);
-    // console.log();
+
     setDisabled(false);
     // console.log(count);
     if (count >= questions.length - 2) {
       setNxtFin(true);
       // setNextDisabled(true);
     }
-    // console.log(anss);
   };
-  const ansSet = (e) => {
-    e.preventDefault();
-    // setAnss[count]("");
+
+  const ansSet = (e, i) => {
     setAnss([...anss, e.target.value]);
-    // setCount(count + 1);
-    // console.log(answers);
+    console.log("ss", i);
+    let ind = i;
+    // console.log(ind);
+    setindexVal(ind);
   };
 
   const prevQues = (e) => {
@@ -129,18 +135,16 @@ function Questions() {
             {questions[count].ans.map((answers, i) => {
               return (
                 <div className="ans" key={i}>
-                  <button
-                    type="button"
+                  <input
+                    type="checkbox"
                     value={answers}
                     name="answers"
+                    defaultChecked={checks}
                     className=" btn btn-outline-success"
-                    onClick={
-                      ansSet
-                      // console.log(anss);
-                    }
-                  >
-                    {answers}
-                  </button>
+                    onClick={(e) => ansSet(e, i)}
+                    // checked={checked}
+                  />
+                  {answers}
                 </div>
               );
             })}
