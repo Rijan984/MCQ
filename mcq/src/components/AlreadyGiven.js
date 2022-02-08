@@ -22,7 +22,7 @@ function AlreadyGiven() {
               answer: null,
             })
           );
-          navigate("/");
+          navigate("/MCQ");
         }}
       >
         Attend Again
