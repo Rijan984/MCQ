@@ -21,7 +21,7 @@ function Questions() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [indexVal, setindexVal] = useState();
-  const [checks, setChecks] = useState(false);
+  // const [checks, setChecks] = useState(false);
 
   useEffect(() => {
     function Timerss() {
@@ -139,10 +139,8 @@ function Questions() {
                     type="checkbox"
                     value={answers}
                     name="answers"
-                    defaultChecked={checks}
                     className=" btn btn-outline-success"
                     onClick={(e) => ansSet(e, i)}
-                    // checked={checked}
                   />
                   {answers}
                 </div>
