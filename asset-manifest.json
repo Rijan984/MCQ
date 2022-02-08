@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/rijanProject/static/css/main.7be20ed6.css",
-    "main.js": "/rijanProject/static/js/main.c2adc41e.js",
-    "static/js/787.3f54ee46.chunk.js": "/rijanProject/static/js/787.3f54ee46.chunk.js",
-    "index.html": "/rijanProject/index.html",
-    "main.7be20ed6.css.map": "/rijanProject/static/css/main.7be20ed6.css.map",
-    "main.c2adc41e.js.map": "/rijanProject/static/js/main.c2adc41e.js.map",
-    "787.3f54ee46.chunk.js.map": "/rijanProject/static/js/787.3f54ee46.chunk.js.map"
+    "main.css": "/MCQ/static/css/main.7be20ed6.css",
+    "main.js": "/MCQ/static/js/main.307c3a12.js",
+    "static/js/787.3f54ee46.chunk.js": "/MCQ/static/js/787.3f54ee46.chunk.js",
+    "index.html": "/MCQ/index.html",
+    "main.7be20ed6.css.map": "/MCQ/static/css/main.7be20ed6.css.map",
+    "main.307c3a12.js.map": "/MCQ/static/js/main.307c3a12.js.map",
+    "787.3f54ee46.chunk.js.map": "/MCQ/static/js/787.3f54ee46.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7be20ed6.css",
-    "static/js/main.c2adc41e.js"
+    "static/js/main.307c3a12.js"
   ]
 }
