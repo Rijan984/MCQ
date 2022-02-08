@@ -61,8 +61,6 @@ function Questions() {
   const nextQues = (e) => {
     let unCheck = document.querySelectorAll("input")[indexVal];
     unCheck.checked = false;
-    e.target.checked = false;
-    console.log(unCheck);
     e.preventDefault();
     setCount(count + 1);
 
@@ -76,7 +74,7 @@ function Questions() {
 
   const ansSet = (e, i) => {
     setAnss([...anss, e.target.value]);
-    console.log("ss", i);
+    // console.log("ss", i);
     let ind = i;
     // console.log(ind);
     setindexVal(ind);
