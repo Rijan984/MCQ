@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ans } from "../../features/userSlice";
 import Finished from "./Finished";
@@ -59,17 +59,19 @@ function Questions() {
   }, [min, navigate, dispatch]);
 
   const nextQues = (e) => {
-    let unCheck = document.querySelectorAll("input")[indexVal];
-    unCheck.checked = false;
     e.preventDefault();
     setCount(count + 1);
-
     setDisabled(false);
+    // if (unCheck.checked) {
+    //   alert("hey");
+    // }
     // console.log(count);
     if (count >= questions.length - 2) {
       setNxtFin(true);
       // setNextDisabled(true);
     }
+    let unCheck = document.querySelectorAll("input")[indexVal];
+    unCheck.checked = false;
   };
 
   const ansSet = (e, i) => {
