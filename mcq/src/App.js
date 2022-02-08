@@ -27,7 +27,7 @@ function App() {
               element={<Finished correctAns={corrAns} />}
             />
           )}
-          <Route exact path="*" element={<ErrorPage />} />
+          <Route exact path="*" element={<Start />} />
         </Routes>
       </Router>
     </div>

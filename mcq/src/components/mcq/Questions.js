@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { ans, selectTime, selectUser, timers } from "../../features/userSlice";
+import { ans } from "../../features/userSlice";
 import Finished from "./Finished";
 import { questions } from "./question";
 import "./questions.css";
