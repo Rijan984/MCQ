@@ -15,8 +15,8 @@ function Questions() {
   const [nxtFin, setNxtFin] = useState(false);
   // const radiosWrapper = useRef();
   // const [result, setResult] = useState("");
-  const [time, setTime] = useState("60 sec");
-  const [min, setMin] = useState(2);
+  const [time, setTime] = useState(60);
+  const [min, setMin] = useState(1);
   const [warn, setWarn] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,55 +30,54 @@ function Questions() {
       const timerInterval = setInterval(() => {
         timer = timer - 1;
         // const min = timer / 60;
-        if (timer <= 0) {
+        if (timer < 0) {
           timer = 60;
           setMin(min - 1);
         }
-        setTime(`${timer} sec`);
+        setTime(timer);
         // console.log(timer);
-        if (min === 0) {
+        if (min === 0 && timer <= 0) {
           clearInterval(timerInterval);
           console.log("hey");
         }
+        if (min === 0 && timer === 0) {
+          alert("hey");
+          setCheck(true);
+          dispatch(
+            ans({
+              answer: anss,
+            })
+          );
+          navigate("/result");
+        }
       }, 1000);
+
+      if (min === 0) {
+        setWarn(true);
+      }
     }
     Timerss();
-
-    if (min === 0) {
-      setCheck(true);
-      dispatch(
-        ans({
-          answer: anss,
-        })
-      );
-      navigate("/result");
-    }
-    if (min === 1) {
-      setWarn(true);
-    }
   }, [min, navigate, dispatch]);
 
   const nextQues = (e) => {
     e.preventDefault();
     setCount(count + 1);
     setDisabled(false);
-    // if (unCheck.checked) {
-    //   alert("hey");
-    // }
-    // console.log(count);
     if (count >= questions.length - 2) {
       setNxtFin(true);
-      // setNextDisabled(true);
     }
-    let unCheck = document.querySelectorAll("input")[indexVal];
-    unCheck.checked = false;
+    let unCheck = document.querySelectorAll("input");
+    unCheck[0].checked = false;
+    unCheck[1].checked = false;
+    unCheck[2].checked = false;
+    unCheck[3].checked = false;
+    // unCheck.checked = false;
   };
 
   const ansSet = (e, i) => {
     setAnss([...anss, e.target.value]);
-    // console.log("ss", i);
+
     let ind = i;
-    // console.log(ind);
     setindexVal(ind);
   };
 
@@ -122,7 +121,7 @@ function Questions() {
           {warn && (
             <p className="alert alert-danger">Only 1 minute remaining</p>
           )}
-          <p>{`${min} min ${time}`}</p>
+          <p>{`${min} min ${time} sec`}</p>
           <h1>
             <u>MCQ Online Examination</u>
           </h1>
