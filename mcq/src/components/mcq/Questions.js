@@ -42,7 +42,6 @@ function Questions() {
           console.log("hey");
         }
         if (min === 0 && timer === 0) {
-          alert("hey");
           setCheck(true);
           dispatch(
             ans({
@@ -64,7 +63,7 @@ function Questions() {
     e.preventDefault();
     setCount(count + 1);
     setDisabled(false);
-    setAnss([...anss, anss1]);
+    // setAnss(, anss1]);
     if (count >= questions.length - 2) {
       setNxtFin(true);
     }
@@ -77,8 +76,7 @@ function Questions() {
   };
 
   const ansSet = (e, i) => {
-    let unCheck = document.querySelectorAll("input");
-    setAnss1(e.target.value);
+    setAnss([...anss, e.target.value]);
 
     let ind = i;
     setindexVal(ind);
@@ -105,6 +103,7 @@ function Questions() {
     if (corr === anss) {
       return console.log("correct");
     }
+
     dispatch(
       ans({
         answer: anss,
