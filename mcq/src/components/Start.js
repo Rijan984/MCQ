@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import Guide from "./guide/Guide";
 import Questions from "./mcq/Questions";
+import "../App.css";
 function Start() {
   const [startQuiz, setQuizStart] = useState(false);
   const quizStart = (e) => {

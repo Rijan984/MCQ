@@ -11,6 +11,7 @@ function Questions() {
   const [disabled, setDisabled] = useState(true);
   const [nextDisabled, setNextDisabled] = useState(false);
   const [anss, setAnss] = useState([]);
+  const [anss1, setAnss1] = useState([]);
   const [check, setCheck] = useState(false);
   const [nxtFin, setNxtFin] = useState(false);
   // const radiosWrapper = useRef();
@@ -63,19 +64,21 @@ function Questions() {
     e.preventDefault();
     setCount(count + 1);
     setDisabled(false);
+    setAnss([...anss, anss1]);
     if (count >= questions.length - 2) {
       setNxtFin(true);
     }
     let unCheck = document.querySelectorAll("input");
-    unCheck[0].checked = false;
-    unCheck[1].checked = false;
-    unCheck[2].checked = false;
-    unCheck[3].checked = false;
-    // unCheck.checked = false;
+    for (let i = 0; i < unCheck.length; i++) {
+      unCheck[i].checked = false;
+
+      // unCheck.checked = false;
+    }
   };
 
   const ansSet = (e, i) => {
-    setAnss([...anss, e.target.value]);
+    let unCheck = document.querySelectorAll("input");
+    setAnss1(e.target.value);
 
     let ind = i;
     setindexVal(ind);
@@ -142,6 +145,7 @@ function Questions() {
                     onClick={(e) => ansSet(e, i)}
                   />
                   {answers}
+                  {/* </input> */}
                 </div>
               );
             })}
