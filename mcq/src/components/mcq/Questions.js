@@ -10,7 +10,7 @@ function Questions() {
   let [count, setCount] = useState(0);
   const [disabled, setDisabled] = useState(true);
   const [nextDisabled, setNextDisabled] = useState(false);
-  const [anss, setAnss] = useState([]);
+  const [anss, setAnss] = useState({});
   const [anss1, setAnss1] = useState([]);
   const [check, setCheck] = useState(false);
   const [nxtFin, setNxtFin] = useState(false);
@@ -73,11 +73,13 @@ function Questions() {
 
       // unCheck.checked = false;
     }
+    console.log(anss);
   };
 
   const ansSet = (e, i) => {
-    setAnss([...anss, e.target.value]);
-
+    console.log(questions.length);
+    const { name, value } = e.target;
+    setAnss({ ...anss, [name]: value });
     let ind = i;
     setindexVal(ind);
   };
@@ -115,8 +117,6 @@ function Questions() {
 
   return (
     <section className="main">
-      <p></p>
-
       {/* <Timer countdownTimestampMs={1643673600000} /> */}
       {check || (
         <div className="main-ques">
@@ -138,8 +138,10 @@ function Questions() {
                 <div className="ans" key={i}>
                   <input
                     type="checkbox"
+                    id="mycheck"
                     value={answers}
-                    name="answers"
+                    name={`${count}`}
+                    // name="answers"
                     className=" btn btn-outline-success"
                     onClick={(e) => ansSet(e, i)}
                   />

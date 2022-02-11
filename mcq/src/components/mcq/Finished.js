@@ -7,29 +7,18 @@ function Finished({ correctAns, count }) {
   const corr = questions.map(({ corrAns }) => corrAns);
   const navigate = useNavigate();
 
-  //   console.log(corr);
-  //   console.log(correctAns);
   let exactAns = [];
-
+  // let i = 0;
   for (let i = 0; i < corr.length; i++) {
     if (correctAns[i] === corr[i]) {
       exactAns[i] = correctAns[i];
     }
   }
-  // console.log(arrAns[0]);
-
-  // let exactAns = corr.filter((correctAnsss) =>
-  //   correctAns.includes(correctAnsss)
-  // );
-  //   console.log(exactAns);
+  console.log("userAns", correctAns[0]);
+  // console.log("userAns", correctAns.answers0);
+  console.log("correctAns", corr);
 
   let perc = (exactAns.length / corr.length) * 100;
-  // useEffect(() => {
-  //   if (JSON.stringify(corr) === JSON.stringify(correctAns)) {
-  //     setScore(perc + "%");
-  //   }
-  //   // else console.log(exactAns);
-  // }, [correctAns, perc, corr, exactAns]);
 
   return (
     <div className="result">
@@ -40,7 +29,6 @@ function Finished({ correctAns, count }) {
           ? "Congratulation!! You Pass The Exam"
           : "Better Luck Next Time!! Fail"}
       </h3>
-
       <button className="btn btn-success" onClick={() => navigate("/")}>
         Exit
       </button>

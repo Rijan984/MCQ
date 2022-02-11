@@ -14,7 +14,7 @@ export const questions = [
       "React.js can render both on client and server side.",
       "All of the above",
     ],
-    corrAns: "React.js can render both on client and server side.",
+    corrAns: "All of the above",
   },
   {
     id: 3,
@@ -90,3 +90,15 @@ export const questions = [
     corrAns: "Xmlns",
   },
 ];
+// export const answerss = {
+//   answers0: "All of the above",
+//   answers1: "All of the above",
+//   answers2: "The JSX in React.js makes code easy to read and write.",
+//   answers3: "npm install -g create-react-app",
+//   answers4: "float",
+//   answers5: `< body style="background-color:yellow">`,
+//   answers6: "<table><tr><td>",
+//   answers7: "JavaScript can be use to validate data",
+//   answers8: "Var",
+//   answers9: "Xmlns",
+// };
