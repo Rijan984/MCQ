@@ -14,9 +14,9 @@ function Finished({ correctAns, count }) {
       exactAns[i] = correctAns[i];
     }
   }
-  console.log("userAns", correctAns[0]);
+  // console.log("userAns", correctAns[0]);
   // console.log("userAns", correctAns.answers0);
-  console.log("correctAns", corr);
+  // console.log("correctAns", corr);
 
   let perc = (exactAns.length / corr.length) * 100;
 

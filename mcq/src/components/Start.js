@@ -3,11 +3,19 @@ import { useState } from "react";
 import Guide from "./guide/Guide";
 import Questions from "./mcq/Questions";
 import "../App.css";
+import { useDispatch } from "react-redux";
+import { ansCheckbox } from "../features/userSlice";
 function Start() {
   const [startQuiz, setQuizStart] = useState(false);
+  const dispatch = useDispatch();
   const quizStart = (e) => {
     e.preventDefault();
     setQuizStart(true);
+    dispatch(
+      ansCheckbox({
+        checkBox: null,
+      })
+    );
   };
   return (
     <div className="App">

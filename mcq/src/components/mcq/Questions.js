@@ -86,7 +86,7 @@ function Questions() {
     for (let i = 0; i < unCheck.length; i++) {
       unCheck[i].checked = false;
     }
-    console.log(anss);
+    // console.log(anss);
     setTimeout(() => {
       for (let i = 0; i < unCheck.length; i++) {
         if (corrAns[count + 1] === unCheck[i].value) {
@@ -99,13 +99,21 @@ function Questions() {
   };
 
   const ansSet = (e, i) => {
-    console.log(questions.length);
+    // console.log(questions.length);
     const { name, value } = e.target;
     setAnss({ ...anss, [name]: value });
     setAnss1({ ...anss1, [name]: value });
 
     let ind = i;
     setindexVal(ind);
+    let unCheck = document.querySelectorAll("input");
+    for (let i = 0; i < unCheck.length; i++) {
+      if (unCheck[i].checked !== true) {
+        unCheck[i].checked = false;
+      } else {
+        unCheck[i].checked = true;
+      }
+    }
   };
 
   const prevQues = (e) => {
