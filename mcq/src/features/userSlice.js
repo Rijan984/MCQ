@@ -6,14 +6,22 @@ export const userSlice = createSlice({
     userAns: {
       answer: null,
     },
+    checkBox: {
+      checkAns: null,
+    },
   },
   reducers: {
     ans: (state, action) => {
       state.userAns = action.payload;
     },
+    ansCheckbox: (state, action) => {
+      state.checkBox = action.payload;
+    },
   },
 });
 
-export const { ans } = userSlice.actions;
+export const { ans, ansCheckbox } = userSlice.actions;
 export const selectUser = (state) => state.userAns;
+export const selectUserCheck = (state) => state.checkBox;
+
 export default userSlice.reducer;

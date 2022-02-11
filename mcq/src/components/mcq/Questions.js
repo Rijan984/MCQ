@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { ans } from "../../features/userSlice";
+import {
+  ans,
+  ansCheckbox,
+  selectUser,
+  selectUserCheck,
+} from "../../features/userSlice";
 import Finished from "./Finished";
 import { questions } from "./question";
 import "./questions.css";
@@ -22,6 +27,9 @@ function Questions() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [indexVal, setindexVal] = useState();
+  const useRedux = useSelector(selectUserCheck);
+  const corrAns = useRedux.checkBox;
+
   // const [checks, setChecks] = useState(false);
 
   useEffect(() => {
@@ -61,32 +69,51 @@ function Questions() {
 
   const nextQues = (e) => {
     e.preventDefault();
+    let unCheck = document.querySelectorAll("input");
+
+    dispatch(
+      ansCheckbox({
+        checkBox: anss1,
+      })
+    );
+
     setCount(count + 1);
     setDisabled(false);
     // setAnss(, anss1]);
     if (count >= questions.length - 2) {
       setNxtFin(true);
     }
-    let unCheck = document.querySelectorAll("input");
     for (let i = 0; i < unCheck.length; i++) {
       unCheck[i].checked = false;
-
-      // unCheck.checked = false;
     }
     console.log(anss);
+    setTimeout(() => {
+      for (let i = 0; i < unCheck.length; i++) {
+        if (corrAns[count + 1] === unCheck[i].value) {
+          unCheck[i].checked = true;
+        } else {
+          unCheck[i].checked = false;
+        }
+      }
+    });
   };
 
   const ansSet = (e, i) => {
     console.log(questions.length);
     const { name, value } = e.target;
     setAnss({ ...anss, [name]: value });
+    setAnss1({ ...anss1, [name]: value });
+
     let ind = i;
     setindexVal(ind);
   };
 
   const prevQues = (e) => {
     e.preventDefault();
+    let unCheck = document.querySelectorAll("input");
     setCount(count - 1);
+    console.log("ss", corrAns[count - 1]);
+    console.log(corrAns[count - 1]);
     setNxtFin(false);
     // console.log(count);
     if (count <= 1) {
@@ -96,6 +123,15 @@ function Questions() {
     if (count < questions.length) {
       setNextDisabled(false);
     }
+    setTimeout(() => {
+      for (let i = 0; i < unCheck.length; i++) {
+        if (corrAns[count - 1] === unCheck[i].value) {
+          unCheck[i].checked = true;
+        } else {
+          unCheck[i].checked = false;
+        }
+      }
+    }, 5);
   };
   const corr = questions.map(({ corrAns }) => corrAns);
   const corrAnss = () => {
@@ -109,6 +145,11 @@ function Questions() {
     dispatch(
       ans({
         answer: anss,
+      })
+    );
+    dispatch(
+      ansCheckbox({
+        checkBox: null,
       })
     );
     navigate("/result");

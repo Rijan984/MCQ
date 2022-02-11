@@ -29,7 +29,7 @@ function Finished({ correctAns, count }) {
           ? "Congratulation!! You Pass The Exam"
           : "Better Luck Next Time!! Fail"}
       </h3>
-      <button className="btn btn-success" onClick={() => navigate("/MCQ")}>
+      <button className="btn btn-success" onClick={() => navigate("/")}>
         Exit
       </button>
     </div>

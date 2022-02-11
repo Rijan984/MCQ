@@ -16,8 +16,8 @@ function App() {
     <div className="App">
       <Router>
         <Routes>
-          {!corrAns && <Route exact path="/MCQ" element={<Start />} />}
-          {corrAns && <Route exact path="/MCQ" element={<AlreadyGiven />} />}
+          {!corrAns && <Route exact path="/" element={<Start />} />}
+          {corrAns && <Route exact path="/" element={<AlreadyGiven />} />}
 
           {/* <Route exact path="/mcq-exam" element={<Questions />} /> */}
           {corrAns && (
