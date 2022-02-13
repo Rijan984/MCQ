@@ -27,6 +27,8 @@ function Questions() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [indexVal, setindexVal] = useState();
+  const [selectFile, setSelectFile] = useState("");
+
   const useRedux = useSelector(selectUserCheck);
   const corrAns = useRedux.checkBox;
 
@@ -64,13 +66,25 @@ function Questions() {
         setWarn(true);
       }
     }
+    let chks = document.querySelectorAll("input");
+
+    for (var i = 0; i < chks.length; i++) {
+      chks[i].onclick = function () {
+        for (var i = 0; i < chks.length; i++) {
+          if (chks[i] !== this && this.checked) {
+            chks[i].checked = false;
+          }
+        }
+      };
+    }
     Timerss();
   }, [min, navigate, dispatch]);
 
   const nextQues = (e) => {
     e.preventDefault();
+    // console.log(selectFile);
     let unCheck = document.querySelectorAll("input");
-
+    // setSelectFile("");
     dispatch(
       ansCheckbox({
         checkBox: anss1,
@@ -88,11 +102,15 @@ function Questions() {
     }
     // console.log(anss);
     setTimeout(() => {
-      for (let i = 0; i < unCheck.length; i++) {
-        if (corrAns[count + 1] === unCheck[i].value) {
-          unCheck[i].checked = true;
-        } else {
-          unCheck[i].checked = false;
+      if (corrAns === null) {
+        return "fail";
+      } else {
+        for (let i = 0; i < unCheck.length; i++) {
+          if (corrAns[count + 1] === unCheck[i].value) {
+            unCheck[i].checked = true;
+          } else {
+            unCheck[i].checked = false;
+          }
         }
       }
     });
@@ -120,8 +138,8 @@ function Questions() {
     e.preventDefault();
     let unCheck = document.querySelectorAll("input");
     setCount(count - 1);
-    console.log("ss", corrAns[count - 1]);
-    console.log(corrAns[count - 1]);
+    // console.log("ss", corrAns[count - 1]);
+    // console.log(corrAns[count - 1]);
     setNxtFin(false);
     // console.log(count);
     if (count <= 1) {
@@ -200,6 +218,14 @@ function Questions() {
               );
             })}
           </div>
+          {/* <input
+            type="file"
+            name="file"
+            onChange={(e) => {
+              setSelectFile(e.target.files[0]);
+            }}
+          /> */}
+
           {/* {questions.map((Ques) => {
         const { id, ques, ans, corrAns } = Ques;
         return (
@@ -255,7 +281,6 @@ function Questions() {
         </div>
       )}
       {check && <Finished correctAns={anss} />}
-
       {/* {console.log(result)} */}
     </section>
   );

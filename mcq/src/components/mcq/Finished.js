@@ -11,9 +11,10 @@ function Finished({ correctAns, count }) {
   // let i = 0;
   for (let i = 0; i < corr.length; i++) {
     if (correctAns[i] === corr[i]) {
-      exactAns[i] = correctAns[i];
+      exactAns = [...exactAns, correctAns[i]];
     }
   }
+  // console.log(exactAns);
   // console.log("userAns", correctAns[0]);
   // console.log("userAns", correctAns.answers0);
   // console.log("correctAns", corr);
