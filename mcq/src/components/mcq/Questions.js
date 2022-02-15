@@ -7,7 +7,7 @@ import {
   selectUser,
   selectUserCheck,
 } from "../../features/userSlice";
-import Fileupload from "./Fileupload";
+
 import Finished from "./Finished";
 import { questions } from "./question";
 import "./questions.css";
