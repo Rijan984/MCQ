@@ -7,9 +7,11 @@ import {
   selectUser,
   selectUserCheck,
 } from "../../features/userSlice";
+import Fileupload from "./Fileupload";
 import Finished from "./Finished";
 import { questions } from "./question";
 import "./questions.css";
+import { ansFile } from "./question";
 
 function Questions() {
   let [count, setCount] = useState(0);
@@ -28,6 +30,7 @@ function Questions() {
   const dispatch = useDispatch();
   const [indexVal, setindexVal] = useState();
   const [selectFile, setSelectFile] = useState("");
+  const [files, setFile] = useState();
 
   const useRedux = useSelector(selectUserCheck);
   const corrAns = useRedux.checkBox;
@@ -164,6 +167,9 @@ function Questions() {
     // console.log(anss);
     // console.log("ss");
     // console.log("ssss", corr[0]);
+    const formData = new FormData();
+    formData.append("File", files, files.name);
+    console.log(files.name);
     if (corr === anss) {
       return console.log("correct");
     }
@@ -171,6 +177,7 @@ function Questions() {
     dispatch(
       ans({
         answer: anss,
+        file: formData,
       })
     );
     dispatch(
@@ -178,6 +185,7 @@ function Questions() {
         checkBox: null,
       })
     );
+    console.log(files);
     navigate("/result");
   };
   // console.log();
@@ -218,6 +226,26 @@ function Questions() {
               );
             })}
           </div>
+          {count > questions.length - 2 && (
+            <div style={{ marginTop: "5%" }}>
+              {ansFile.map((questions) => {
+                const { id, file, ques } = questions;
+                return (
+                  <section key={id}>
+                    <div className="questions">
+                      <h4>{id}.</h4>
+                      <h4>{ques}</h4>
+                    </div>
+                    <input
+                      type="file"
+                      style={{ marginTop: "2%" }}
+                      onChange={(e) => setFile(e.target.files[0])}
+                    />
+                  </section>
+                );
+              })}
+            </div>
+          )}
           {/* <input
             type="file"
             name="file"

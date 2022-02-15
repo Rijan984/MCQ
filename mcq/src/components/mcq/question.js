@@ -102,3 +102,10 @@ export const questions = [
 //   answers8: "Var",
 //   answers9: "Xmlns",
 // };
+export const ansFile = [
+  {
+    id: 11,
+    ques: "Write short note on React.Js.",
+    file: true,
+  },
+];
