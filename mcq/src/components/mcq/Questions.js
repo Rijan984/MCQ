@@ -164,29 +164,22 @@ function Questions() {
   };
   const corr = questions.map(({ corrAns }) => corrAns);
   const corrAnss = () => {
-    // console.log(anss);
-    // console.log("ss");
-    // console.log("ssss", corr[0]);
     const formData = new FormData();
-    formData.append("File", files, files.name);
-    console.log(files.name);
-    if (corr === anss) {
-      return console.log("correct");
-    }
+    formData.append("File", files);
 
-    dispatch(
-      ans({
-        answer: anss,
-        file: formData,
-      })
-    );
-    dispatch(
-      ansCheckbox({
-        checkBox: null,
-      })
-    );
-    console.log(files);
-    navigate("/result");
+    if (files) {
+      dispatch(
+        ans({
+          answer: anss,
+        })
+      );
+      dispatch(
+        ansCheckbox({
+          checkBox: null,
+        })
+      );
+      navigate("/result");
+    }
   };
   // console.log();
 
@@ -241,6 +234,7 @@ function Questions() {
                       style={{ marginTop: "2%" }}
                       onChange={(e) => setFile(e.target.files[0])}
                     />
+                    {!files && <p>Please choose file.</p>}
                   </section>
                 );
               })}
@@ -287,7 +281,7 @@ function Questions() {
             {nxtFin && (
               <button
                 onClick={() => {
-                  setCheck(true);
+                  // setCheck(true);
                   corrAnss();
                 }}
                 className="btn btn-primary"
