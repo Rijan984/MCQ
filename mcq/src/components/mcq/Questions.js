@@ -24,12 +24,12 @@ function Questions() {
   // const radiosWrapper = useRef();
   // const [result, setResult] = useState("");
   const [time, setTime] = useState(60);
-  const [min, setMin] = useState(1);
+  const [min, setMin] = useState(5);
   const [warn, setWarn] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [indexVal, setindexVal] = useState();
-  const [selectFile, setSelectFile] = useState("");
+  const [selectFile, setSelectFile] = useState(false);
   const [files, setFile] = useState();
 
   const useRedux = useSelector(selectUserCheck);
@@ -168,6 +168,7 @@ function Questions() {
     formData.append("File", files);
 
     if (files) {
+      setSelectFile(false);
       dispatch(
         ans({
           answer: anss,
@@ -179,6 +180,8 @@ function Questions() {
         })
       );
       navigate("/result");
+    } else {
+      setSelectFile(true);
     }
   };
   // console.log();
@@ -225,16 +228,23 @@ function Questions() {
                 const { id, file, ques } = questions;
                 return (
                   <section key={id}>
+                    <h4>{`=>`} Submit the answer in document.(5mark)</h4>
+
                     <div className="questions">
-                      <h4>{id}.</h4>
                       <h4>{ques}</h4>
                     </div>
                     <input
                       type="file"
                       style={{ marginTop: "2%" }}
-                      onChange={(e) => setFile(e.target.files[0])}
+                      onChange={(e) => {
+                        setFile(e.target.files[0]);
+                        setSelectFile(false);
+                      }}
                     />
-                    {!files && <p>Please choose file.</p>}
+
+                    {selectFile && (
+                      <p style={{ color: "red" }}>Please choose file.</p>
+                    )}
                   </section>
                 );
               })}

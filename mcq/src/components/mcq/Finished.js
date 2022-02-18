@@ -30,6 +30,7 @@ function Finished({ correctAns, count }) {
           ? "Congratulation!! You Pass The Exam"
           : "Better Luck Next Time!! Fail"}
       </h3>
+      <p>Note: We will inform you the result of the file you have submitted.</p>
       <button className="btn btn-success" onClick={() => navigate("/MCQ")}>
         Exit
       </button>
