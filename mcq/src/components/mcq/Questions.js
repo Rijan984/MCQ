@@ -121,9 +121,9 @@ function Questions() {
 
   const ansSet = (e, i) => {
     // console.log(questions.length);
-    const { name, value } = e.target;
-    setAnss({ ...anss, [name]: value });
-    setAnss1({ ...anss1, [name]: value });
+    // const { name, value } = e.target;
+    setAnss({ ...anss, [count]: e.target.value });
+    setAnss1({ ...anss1, [count]: e.target.value });
 
     let ind = i;
     setindexVal(ind);
@@ -184,8 +184,6 @@ function Questions() {
       setSelectFile(true);
     }
   };
-  // console.log();
-
   return (
     <section className="main">
       {/* <Timer countdownTimestampMs={1643673600000} /> */}
