@@ -31,7 +31,8 @@ function Questions() {
   const [indexVal, setindexVal] = useState();
   const [selectFile, setSelectFile] = useState(false);
   const [files, setFile] = useState();
-
+  const [multiple, setMultiple] = useState({});
+  const [arr, setArr] = useState([]);
   const useRedux = useSelector(selectUserCheck);
   const corrAns = useRedux.checkBox;
 
@@ -69,30 +70,57 @@ function Questions() {
         setWarn(true);
       }
     }
-    let chks = document.querySelectorAll("input");
+    // let chks = document.querySelectorAll("input");
 
-    for (var i = 0; i < chks.length; i++) {
-      chks[i].onclick = function () {
-        for (var i = 0; i < chks.length; i++) {
-          if (chks[i] !== this && this.checked) {
-            chks[i].checked = false;
-          }
-        }
-      };
-    }
+    // for (var i = 0; i < chks.length; i++) {
+    //   chks[i].onclick = function () {
+    //     for (var i = 0; i < chks.length; i++) {
+    //       if (chks[i] !== this && this.checked) {
+    //         chks[i].checked = false;
+    //       }
+    //     }
+    //   };
+    // }
+
     Timerss();
   }, [min, navigate, dispatch]);
-
-  const nextQues = (e) => {
-    e.preventDefault();
-    // console.log(selectFile);
-    let unCheck = document.querySelectorAll("input");
-    // setSelectFile("");
+  useEffect(() => {
+    // setAnss1({ ...anss1, [count]: arr });
+    // console.log(anss1[count][0]);
+    // console.log(corrAns[count][0]);
+    // setAnss({ ...anss, [count]: multiple });
     dispatch(
       ansCheckbox({
         checkBox: anss1,
       })
     );
+
+    console.log(corrAns);
+  }, [multiple, anss1, corrAns, dispatch]);
+
+  const nextQues = (e) => {
+    e.preventDefault();
+
+    // console.log(selectFile);
+    let unCheck = document.querySelectorAll("input");
+    let sss = [];
+    for (let i = 0; i < unCheck.length; i++) {
+      if (unCheck[i].checked === true) {
+        // console.log(unCheck[i].value);
+        // setArr([...arr, unCheck[i].value]);
+        sss.push(unCheck[i].value);
+      }
+    }
+    setAnss1({ ...anss1, [count]: sss });
+    // console.log(anss1[count][0]);
+    setArr(sss);
+    console.log(anss1);
+    // setAnss1({ ...anss1, [count]: multiple });
+
+    // console.log("sssssss", sss);
+    // setSelectFile("");
+
+    // console.log(count + 1, corrAns[count + 1][0]);
 
     setCount(count + 1);
     setDisabled(false);
@@ -105,29 +133,58 @@ function Questions() {
     }
     // console.log(anss);
     setTimeout(() => {
-      if (corrAns === null) {
-        return "fail";
-      } else {
-        for (let i = 0; i < unCheck.length; i++) {
-          if (corrAns[count + 1] === unCheck[i].value) {
+      // if (corrAns === null) {
+      //   console.log("fail");
+      // } else {
+      for (let i = 0; i < unCheck.length; i++) {
+        if (corrAns[count + 1]) {
+          if (corrAns[count + 1].includes(unCheck[i].value)) {
             unCheck[i].checked = true;
+            console.log(corrAns[count + 1][i]);
           } else {
             unCheck[i].checked = false;
           }
         }
       }
+      // }
     });
+    // setTimeout(() => {
+    //   for (let i = 0; i < unCheck.length; i++) {
+    //     if (corrAns) {
+    //       if (corrAns.includes(unCheck[i].value)) {
+    //         unCheck[i].checked = true;
+    //       } else {
+    //         // unCheck[i].checked = false;
+    //       }
+    //     } else {
+    //     }
+    //   }
+    // });
+    // console.log(anss1);
+    // console.log(multiple);
   };
 
   const ansSet = (e, i) => {
     // console.log(questions.length);
-    // const { name, value } = e.target;
-    setAnss({ ...anss, [count]: e.target.value });
-    setAnss1({ ...anss1, [count]: e.target.value });
+    let unCheck = document.querySelectorAll("input");
+    const { value } = e.target;
+    // var checkVal = {};
+    // var ss = [];
 
+    setMultiple({ ...multiple, [i]: value });
+    // console.log(multiple);
+    setAnss({ ...anss, [count]: value });
+    // setAnss1({ ...anss1, [count]: multiple });
+
+    // for (let i = 0; i < unCheck.length; i++) {
+    //   if (unCheck[i].checked === true) {
+    //     setAnss1([...anss1, unCheck[i].value]);
+    //   } else {
+    //     unCheck[i].checked = false;
+    //   }
+    // }
     let ind = i;
     setindexVal(ind);
-    let unCheck = document.querySelectorAll("input");
     for (let i = 0; i < unCheck.length; i++) {
       if (unCheck[i].checked !== true) {
         unCheck[i].checked = false;
@@ -154,13 +211,26 @@ function Questions() {
     }
     setTimeout(() => {
       for (let i = 0; i < unCheck.length; i++) {
-        if (corrAns[count - 1] === unCheck[i].value) {
-          unCheck[i].checked = true;
-        } else {
-          unCheck[i].checked = false;
+        console.log(corrAns[count - 1][i], unCheck[i].value);
+        if (corrAns !== []) {
+          if (corrAns[count - 1].includes(unCheck[i].value)) {
+            unCheck[i].checked = true;
+            console.log("checked");
+          } else {
+            unCheck[i].checked = false;
+          }
         }
       }
     }, 5);
+    // setTimeout(() => {
+    //   for (let i = 0; i < unCheck.length; i++) {
+    //     if (corrAns.includes(unCheck[i].value)) {
+    //       unCheck[i].checked = true;
+    //     } else {
+    //       unCheck[i].checked = false;
+    //     }
+    //   }
+    // });
   };
   const corr = questions.map(({ corrAns }) => corrAns);
   const corrAnss = () => {
@@ -171,7 +241,7 @@ function Questions() {
       setSelectFile(false);
       dispatch(
         ans({
-          answer: anss,
+          answer: anss1,
         })
       );
       dispatch(
@@ -211,7 +281,7 @@ function Questions() {
                     value={answers}
                     name={`${count}`}
                     // name="answers"
-                    className=" btn btn-outline-success"
+                    className=" btn btn-outlinbe-success"
                     onClick={(e) => ansSet(e, i)}
                   />
                   {answers}
@@ -248,36 +318,7 @@ function Questions() {
               })}
             </div>
           )}
-          {/* <input
-            type="file"
-            name="file"
-            onChange={(e) => {
-              setSelectFile(e.target.files[0]);
-            }}
-          /> */}
 
-          {/* {questions.map((Ques) => {
-        const { id, ques, ans, corrAns } = Ques;
-        return (
-          <section key={id}>
-            <div className="questions">
-              <h3>{id}.</h3>
-              <h3>{ques}</h3>
-            </div>
-            {ans.map((anss) => {
-              return (
-                <>
-                  <div>
-                    <input type="checkBox" value={ans} name="answers" />
-                    {anss}
-                  </div>
-                </>
-              );
-            })}
-          </section>
-        );
-      })} */}
-          {/* <button onClick={nextQues}>Next</button> */}
           <div className="mcq-btn">
             <button
               onClick={prevQues}
@@ -310,7 +351,7 @@ function Questions() {
           </div>
         </div>
       )}
-      {check && <Finished correctAns={anss} />}
+      {check && <Finished correctAns={anss1} />}
       {/* {console.log(result)} */}
     </section>
   );

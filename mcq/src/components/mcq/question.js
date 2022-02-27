@@ -3,7 +3,7 @@ export const questions = [
     id: 1,
     ques: "Which of the following is the correct name of React.js?",
     ans: ["React", "React.js", "ReactJS", "All of the above"],
-    corrAns: "All of the above",
+    corrAns: ["All of the above"],
   },
   {
     id: 2,
@@ -14,7 +14,7 @@ export const questions = [
       "React.js can render both on client and server side.",
       "All of the above",
     ],
-    corrAns: "All of the above",
+    corrAns: ["All of the above"],
   },
   {
     id: 3,
@@ -25,7 +25,7 @@ export const questions = [
       "The JSX in React.js makes code easy to read and write.",
       "The learning curve can be steep in React.js.",
     ],
-    corrAns: "The JSX in React.js makes code easy to read and write.",
+    corrAns: ["The JSX in React.js makes code easy to read and write."],
   },
   {
     id: 4,
@@ -36,13 +36,13 @@ export const questions = [
       "npm install -f create-react-app",
       "install -g create-react-app",
     ],
-    corrAns: "npm install -g create-react-app",
+    corrAns: ["npm install -g create-react-app"],
   },
   {
     id: 5,
     ques: "Which is not valid data type in Javascript?",
     ans: [" Undefinded", "Boolean", "float", "Number"],
-    corrAns: "float",
+    corrAns: ["Boolean", "float"],
   },
   {
     id: 6,
@@ -53,7 +53,7 @@ export const questions = [
       `< body style="background-color:yellow">`,
       `<background color="yellow">text<background>`,
     ],
-    corrAns: `< body style="background-color:yellow">`,
+    corrAns: [`< body style="background-color:yellow">`],
   },
   {
     id: 7,
@@ -64,7 +64,7 @@ export const questions = [
       "<table><tr><tt>",
       "<thead><body><tr>",
     ],
-    corrAns: "<table><tr><td>",
+    corrAns: ["<table><tr><td>"],
   },
   {
     id: 8,
@@ -75,33 +75,33 @@ export const questions = [
       "JavaScript can be use to validate data",
       "All of the Above",
     ],
-    corrAns: "JavaScript can be use to validate data",
+    corrAns: ["JavaScript can be use to validate data"],
   },
   {
     id: 9,
     ques: "_________ keyword is used to declare variables in javascript.",
     ans: ["Var", "Dim", "String", "None of the above"],
-    corrAns: "Var",
+    corrAns: ["Var"],
   },
   {
     id: 10,
     ques: "The attribute used to define a new namespace is.",
     ans: ["XMLNS", "XmlNameSpace", "Xmlns", "XmlNs"],
-    corrAns: "Xmlns",
+    corrAns: ["Xmlns"],
   },
 ];
-// export const answerss = {
-//   answers0: "All of the above",
-//   answers1: "All of the above",
-//   answers2: "The JSX in React.js makes code easy to read and write.",
-//   answers3: "npm install -g create-react-app",
-//   answers4: "float",
-//   answers5: `< body style="background-color:yellow">`,
-//   answers6: "<table><tr><td>",
-//   answers7: "JavaScript can be use to validate data",
-//   answers8: "Var",
-//   answers9: "Xmlns",
-// };
+export const answerss = {
+  0: "All of the above",
+  1: "All of the above",
+  2: "The JSX in React.js makes code easy to read and write.",
+  3: "npm install -g create-react-app",
+  4: "float",
+  5: `< body style="background-color:yellow">`,
+  6: "<table><tr><td>",
+  7: "JavaScript can be use to validate data",
+  8: "Var",
+  9: "Xmlns",
+};
 export const ansFile = [
   {
     id: 11,
